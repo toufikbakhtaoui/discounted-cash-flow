@@ -5,12 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AnnualReport {
-    private String fiscalDateEnding;
-    private String operatingCashflow;
-    private String paymentsForOperatingActivities;
+public class CashFlowDataResponse {
+    private String symbol;
+    private List<AnnualReport> annualReports;
 }

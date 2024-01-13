@@ -1,5 +1,6 @@
 package com.solyador.service;
 
+import com.solyador.model.CashFlowDataResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -15,14 +16,14 @@ public class CashFlowService {
         this.restTemplate = restTemplate;
     }
 
-    public void getCashFlow(String symbol) {
+    public CashFlowDataResponse getCashFlow(String symbol) {
         try {
             var uri = "https://www.alphavantage.co/query?function=CASH_FLOW&symbol=" + symbol + "&apikey=" + API_KEY;
-            var response = restTemplate.getForObject(uri, Object.class);
-            log.debug("Cash Flow Data: " + response);
+            return restTemplate.getForObject(uri, CashFlowDataResponse.class);
 
         } catch (Exception e) {
             log.error("error while trying to get cash flow");
+            return null;
         }
     }
 }

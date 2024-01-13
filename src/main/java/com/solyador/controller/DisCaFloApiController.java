@@ -1,5 +1,6 @@
 package com.solyador.controller;
 
+import com.solyador.model.CashFlowDataResponse;
 import com.solyador.service.CashFlowService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,8 +21,7 @@ public class DisCaFloApiController {
     }
 
     @GetMapping("/{stockId}")
-    public ResponseEntity<String> getStock(@PathVariable("stockId") String stockId) {
-        cashFlowService.getCashFlow(stockId);
-        return ResponseEntity.ok("sending stock's information here");
+    public ResponseEntity<CashFlowDataResponse> getStock(@PathVariable("stockId") String stockId) {
+        return ResponseEntity.ok(cashFlowService.getCashFlow(stockId));
     }
 }
