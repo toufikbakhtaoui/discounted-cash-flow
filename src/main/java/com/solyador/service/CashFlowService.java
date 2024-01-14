@@ -10,6 +10,7 @@ import org.springframework.web.client.RestTemplate;
 public class CashFlowService {
 
     private static final String API_KEY = "ZG4AL4Q0N9XBO";
+    private static final String ALPHA_API_URL = "https://www.alphavantage.co/query?function=CASH_FLOW";
     private final RestTemplate restTemplate;
 
     public CashFlowService(RestTemplate restTemplate) {
@@ -18,7 +19,7 @@ public class CashFlowService {
 
     public CashFlowDataResponse getCashFlow(String symbol) {
         try {
-            var uri = "https://www.alphavantage.co/query?function=CASH_FLOW&symbol=" + symbol + "&apikey=" + API_KEY;
+            var uri = ALPHA_API_URL + "&symbol=" + symbol + "&apikey=" + API_KEY;
             return restTemplate.getForObject(uri, CashFlowDataResponse.class);
 
         } catch (Exception e) {
