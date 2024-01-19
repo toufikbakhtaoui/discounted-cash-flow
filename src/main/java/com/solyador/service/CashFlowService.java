@@ -13,12 +13,11 @@ import org.springframework.web.client.RestTemplate;
 public class CashFlowService {
 
     private final ApplicationProperties applicationProperties;
-    private static final String ALPHA_API_URL = "https://www.alphavantage.co/query?function=CASH_FLOW";
     private final RestTemplate restTemplate;
 
     public CashFlowDataResponse getCashFlow(String symbol) {
         try {
-            var uri = ALPHA_API_URL + "&symbol=" + symbol + "&apikey=" + applicationProperties.getApiKey();
+            var uri = applicationProperties.getAlphaUrl() + "/query?function=CASH_FLOW&symbol=" + symbol + "&apikey=" + applicationProperties.getApiKey();
             return restTemplate.getForObject(uri, CashFlowDataResponse.class);
 
         } catch (Exception e) {

@@ -10,4 +10,7 @@ public class ApplicationProperties {
 
     @Value("${app.api_key}")
     private String apiKey;
+
+    @Value("${app.alpha_url}")
+    private String alphaUrl;
 }
